@@ -12,6 +12,7 @@ function getClientRect (node) {
 
 function shuffle (array, predicate) {
 	return array.reduce((acc, item, index) => {
+		console.log(item);
 		if (predicate(item, index)){
 			return [item, ...acc];
 		}
@@ -26,7 +27,7 @@ export class Item extends React.Component {
 		this.props.onClick();
 	}
 	render () {
-		let cn = classNames('item', this.props.className);
+		let cn = classNames('item', {'active': this.props.isActive},this.props.className);
 		return (
 			<li className={cn} onClick={this.handleClick} ref={this.props.index}>{this.props.children}</li>
 		);
@@ -101,10 +102,19 @@ export default class PrioPlus extends React.Component {
 		this.setState({items: items, order: order});
 	}
 
+	toggleChildActive = (item, index, array) => {
+		let tempArray = array.slice();
+		tempArray[index] = React.cloneElement(array[index], {isActive: !item.props.isActive});
+		return tempArray;
+	}
+
 	handleSwitch = (item, i) => {
 		const newOrder = shuffle(this.state.order, (item) => item === i);
 
-		const newState = shuffle(this.state.items, (item, index) => {
+		const updatedItems = this.toggleChildActive(item, i, this.state.items);
+		console.log(updatedItems);
+
+		const newState = shuffle(updatedItems, (item, index) => {
 			return this.state.order.indexOf(i) === index;
 		});
 
