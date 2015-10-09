@@ -1,0 +1,39 @@
+{
+  "name": "react-prioplus",
+  "version": "0.1.0",
+  "description": "React implementation of the PriorityPlus pattern",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "babel": "babel src --out-dir ./dist",
+    "less": "lessc src/index.less > demo/index.css",
+    "build": "npm run babel",
+    "build-assets": "browserify --extension=.jsx -t [ babelify --stage 0] src/demo.jsx > demo/index.js",
+    "watch": "npm run babel -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dangoo/react-prioplus.git"
+  },
+  "keywords": [
+    "react",
+    "priorityplus"
+  ],
+  "author": "Daniel Gooß",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dangoo/react-prioplus/issues"
+  },
+  "homepage": "https://github.com/Dangoo/react-prioplus#readme",
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babelify": "^6.3.0",
+		"babel-runtime": "^5.8.25",
+    "less": "^2.5.3"
+  },
+  "dependencies": {
+    "classnames": "^2.1.5",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
+  }
+}

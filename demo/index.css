@@ -1,0 +1,86 @@
+.itemList {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #CFD8DC;
+}
+.item {
+  display: inline-flex;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ccc;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.item:last-child {
+  margin-right: 0;
+}
+.item.active {
+  background-color: #42A5F5;
+  border-color: #42A5F5;
+  color: white;
+}
+.prioPlus {
+  display: flex;
+  margin: 50px;
+  background-color: #efefef;
+  color: #607D8B;
+  font-family: sans-serif;
+}
+.prioPlus > .itemList {
+  width: 100%;
+  flex-grow: 1;
+  padding: 10px;
+  border-right: 0;
+}
+.prioPlus > .itemList .item {
+  margin: 0 5px 0 0;
+}
+.listTrigger {
+  position: relative;
+  appearance: none;
+  border: 0;
+  background-color: #42A5F5;
+  vertical-align: top;
+  flex-shrink: 0;
+  color: #fff;
+  outline: none;
+  width: 50px;
+}
+.listTrigger::before {
+  display: block;
+  content: '•••';
+  transform-origin: 50% 50%;
+  transition: transform 0.3s ease-out;
+}
+.listTrigger.active::before {
+  content: '×';
+  font-size: 1.5em;
+  transform-origin: 50% 53.5%;
+  transform: rotateZ(180deg);
+}
+.listTrigger .itemList {
+  visibility: hidden;
+  position: absolute;
+  padding: 5px;
+  top: calc(99%);
+  right: 0;
+  color: #607D8B;
+  text-align: left;
+  transition: box-shadow 0.3s ease;
+}
+:focus.listTrigger .itemList {
+  border-color: #42A5F5;
+}
+.listTrigger .itemList.open {
+  visibility: visible;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+.listTrigger .item {
+  min-width: 200px;
+}
+.listTrigger .item:not(:last-child) {
+  margin-bottom: 5px;
+}
